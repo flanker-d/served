@@ -46,7 +46,8 @@ int main(int, char const**)
 	std::cout << "Try this example with:" << std::endl;
 	std::cout << " curl http://localhost:8123/form_post -d \"hello world!\"" << std::endl;
 
-	served::net::server server("0.0.0.0", "8123", mux);
+  boost::asio::io_service io_service;
+	served::net::server server("0.0.0.0", "8123", mux, io_service);
 	server.run(10);
 
 	return (EXIT_SUCCESS);

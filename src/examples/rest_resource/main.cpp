@@ -65,7 +65,8 @@ int main(int, char const**)
 			// create customer
 		});
 
-	served::net::server server("127.0.0.1", "8123", mux);
+  boost::asio::io_service io_service;
+	served::net::server server("127.0.0.1", "8123", mux, io_service);
 	server.run(10);
 
 	return (EXIT_SUCCESS);

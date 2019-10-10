@@ -59,7 +59,8 @@ int main(int, char const**)
 	std::cout << " curl http://localhost:1337/served" << std::endl;
 	std::cout << " curl http://localhost:1337/itson" << std::endl;
 
-	served::net::server server("127.0.0.1", "1337", mux);
+  boost::asio::io_service io_service;
+	served::net::server server("127.0.0.1", "1337", mux, io_service);
 	server.run(10);
 
 	return (EXIT_SUCCESS);

@@ -29,12 +29,13 @@
 using namespace served;
 using namespace served::net;
 
-server::server( const std::string & address
-              , const std::string & port
-              , multiplexer       & mux
-              , bool              register_signals /* = true */
+server::server( const std::string       & address
+              , const std::string       & port
+              , multiplexer             & mux
+              , boost::asio::io_service & io_service
+              , bool                    register_signals /* = true */
               )
-	: _io_service()
+	: _io_service(io_service)
 	, _signals(_io_service)
 	, _acceptor(_io_service)
 	, _connection_manager()

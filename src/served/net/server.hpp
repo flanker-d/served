@@ -40,7 +40,7 @@ namespace served { namespace net {
  */
 class server
 {
-	boost::asio::io_service        _io_service;
+  boost::asio::io_service &      _io_service;
 	boost::asio::signal_set        _signals;
 	boost::asio::ip::tcp::acceptor _acceptor;
 	connection_manager             _connection_manager;
@@ -65,10 +65,11 @@ public:
 	 * @param read_timeout optional parameter that specifies a timeout for reading
 	 * @param write_timeout optional parameter that specifies a timeout for writing
 	 */
-	explicit server( const std::string & address
-	               , const std::string & port
-	               , multiplexer       & mux
-	               , bool              register_signals = true );
+	explicit server( const std::string       & address
+	               , const std::string       & port
+	               , multiplexer             & mux
+	               , boost::asio::io_service & io_service
+	               , bool                    register_signals = true );
 
 	/*
 	 * A call that prompts the server into listening for HTTP requests.
