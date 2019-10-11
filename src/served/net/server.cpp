@@ -81,34 +81,34 @@ server::run(int n_threads /* = 1 */, bool block /* = true */)
 	 * asynchronous operation outstanding: the asynchronous accept call waiting
 	 * for new incoming connections.
 	 */
-	if ( n_threads > 1 )
-	{
-		std::vector<std::thread> v_threads;
-		for ( int i = 0; i < n_threads; i++ )
-		{
-			v_threads.push_back(std::thread([this](){
-				_io_service.run();
-			}));
-		}
-		for ( auto & thread : v_threads )
-		{
-			if ( block )
-			{
-				if ( thread.joinable() )
-				{
-					thread.join();
-				}
-			}
-			else
-			{
-				thread.detach();
-			}
-		}
-	}
-	else
-	{
-		_io_service.run();
-	}
+//	if ( n_threads > 1 )
+//	{
+//		std::vector<std::thread> v_threads;
+//		for ( int i = 0; i < n_threads; i++ )
+//		{
+//			v_threads.push_back(std::thread([this](){
+//				_io_service.run();
+//			}));
+//		}
+//		for ( auto & thread : v_threads )
+//		{
+//			if ( block )
+//			{
+//				if ( thread.joinable() )
+//				{
+//					thread.join();
+//				}
+//			}
+//			else
+//			{
+//				thread.detach();
+//			}
+//		}
+//	}
+//	else
+//	{
+//		_io_service.run();
+//	}
 }
 
 void
